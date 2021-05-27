@@ -16,7 +16,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
             chrome.tabs.executeScript(tab.id, { code: scriptToExec },
                 function (scraped) {
-                    alert(scraped[0]);
+                    htmlcode = scraped[0]
+                    $.post("http://127.0.0.1:5000/", {
+                        html: htmlcode
+                    }, function(response){ 
+                        alert("success");
+                        $("#mypar").html(response.amount);
+                    });
                 }
             );
         })

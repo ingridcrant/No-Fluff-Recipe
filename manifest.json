@@ -10,5 +10,6 @@
         "default_popup": "popup.html",
         "default_title": "No Fluff Recipe"
     },
-    "permissions": ["tabs", "<all_urls>"]
+    "permissions": ["tabs", "<all_urls>", "*://*/*"],
+    "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'"
 }
