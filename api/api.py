@@ -7,6 +7,5 @@ app = Flask(__name__)
 
 @app.route('/postmethod', methods = ['POST'])
 def get_post_javascript_data():
-    html = request.form['javascript_data'].html
-    print(html)
+    html = request.form['html']
     return "passed"

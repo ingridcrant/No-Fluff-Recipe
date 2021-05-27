@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
             chrome.tabs.executeScript(tab.id, { code: scriptToExec },
                 function (scraped) {
                     htmlcode = scraped[0]
-                    $.post("http://127.0.0.1:5000/", {
+                    $.post("http://127.0.0.1:5000/postmethod", {
                         html: htmlcode
                     }, function(response){ 
                         alert("success");
