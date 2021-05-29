@@ -7,6 +7,12 @@ function scrapeThePage() {
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('button').addEventListener('click',
     onclick, false)
+
+    function openfile() {
+        chrome.tabs.create({
+            url: '/api/recipe.html'
+        });
+    }
     
     function onclick() {
         chrome.tabs.query({ active: true, currentWindow: true },
@@ -20,11 +26,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     $.post("http://127.0.0.1:5000/postmethod", {
                         html: htmlcode
                     }, function(response){ 
-                        alert("success");
+                        alert(response);
+                        openfile();
                         $("#mypar").html(response.amount);
                     });
                 }
             );
-        })
+        });
     }
 }, false)

@@ -1,11 +1,21 @@
 from flask import Flask, request
-import requests
 from bs4 import BeautifulSoup
-from urllib.request import urlopen
 
 app = Flask(__name__)
 
 @app.route('/postmethod', methods = ['POST'])
 def get_post_javascript_data():
     html = request.form['html']
-    return "passed"
+    html_soup = BeautifulSoup(html, 'html.parser')
+    image = html_soup.find('div', class_='image-container')
+    ingredients = html_soup.find('div', class_='recipe-shopper-wrapper')
+    instructions = html_soup.find('fieldset', class_='instructions-section__fieldset')
+
+    f = open('recipe.html','w')
+
+    content = image.text + ingredients.text + instructions.text
+
+    f.write(content)
+    f.close()
+
+    return 'Success', 200
