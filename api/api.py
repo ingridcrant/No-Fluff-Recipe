@@ -11,11 +11,11 @@ def get_post_javascript_data():
     ingredients = html_soup.find('div', class_='recipe-shopper-wrapper')
     instructions = html_soup.find('fieldset', class_='instructions-section__fieldset')
 
-    f = open('recipe.html','w')
+    content = str(image) + str(ingredients) + str(instructions)
 
-    content = image.text + ingredients.text + instructions.text
-
-    f.write(content)
+    with open('recipe.html','w') as f:
+        f.write(content)
+    
     f.close()
 
     return 'Success', 200

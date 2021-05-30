@@ -8,12 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('button').addEventListener('click',
     onclick, false)
 
-    function openfile() {
-        chrome.tabs.create({
-            url: '/api/recipe.html'
-        });
-    }
-    
     function onclick() {
         chrome.tabs.query({ active: true, currentWindow: true },
         function (tabs) {
@@ -22,16 +16,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
             chrome.tabs.executeScript(tab.id, { code: scriptToExec },
                 function (scraped) {
-                    htmlcode = scraped[0]
-                    $.post("http://127.0.0.1:5000/postmethod", {
+                    const htmlcode = scraped[0]
+                    $.post("http://127.0.0.1:5000/postmethod",
+                    {
                         html: htmlcode
-                    }, function(response){ 
-                        alert(response);
-                        openfile();
-                        $("#mypar").html(response.amount);
+                    }, function(resopnse) {
+                        chrome.tabs.create({url: '/api/recipe.html'})
                     });
                 }
-            );
-        });
+            )
+        })
     }
 }, false)
