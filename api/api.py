@@ -7,11 +7,11 @@ app = Flask(__name__)
 def get_post_javascript_data():
     html = request.form['html']
     html_soup = BeautifulSoup(html, 'html.parser')
-    image = html_soup.div.img
+    image = html_soup.find('div', class_='inner-container js-inner-container image-overlay')
     ingredients = html_soup.find('div', class_='recipe-shopper-wrapper')
     instructions = html_soup.find('fieldset', class_='instructions-section__fieldset')
 
-    content = str(image) + str(ingredients) + str(instructions)
+    content = str(image.img) + str(ingredients) + str(instructions)
 
     with open('recipe.html','w') as f:
         f.write(content)
