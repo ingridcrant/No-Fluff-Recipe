@@ -17,8 +17,19 @@ def get_post_javascript_data():
     ingredientsheader = '<h2>Ingredients</h2>'
     instructionsheader = '<h2>Instructions</h2>'
     header = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><link rel="stylesheet" href="recipestyle.css" /><title>Recipe</title></head>'
+
+    stepcount = 0
+
+    instructiontext = '<ul>'
+
+    for item in instructions.findAll('li'):
+        stepcount += 1
+        instructiontext += '<h3>Step '+str(stepcount)+'</h3>'
+        instructiontext += str(item.div)
     
-    content = header + str(title) + str(image.img) + originalserving + ingredientsheader + str(ingredients) + instructionsheader + str(instructions)
+    instructiontext += '</ul>'
+
+    content = header + str(title) + str(image.img) + originalserving + ingredientsheader + str(ingredients) + instructionsheader + instructiontext
 
     with open('recipe.html','w') as f:
         f.write('<div class="container">')
