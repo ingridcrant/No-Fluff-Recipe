@@ -20,8 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     $.post("http://127.0.0.1:5000/postmethod",
                     {
                         html: htmlcode
-                    }, function(resopnse) {
-                        chrome.tabs.create({url: '/api/recipe.html'})
+                    }, function(response) {
+                        document.body.innerHTML = response;
                     });
                 }
             )
