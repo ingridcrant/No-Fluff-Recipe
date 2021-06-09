@@ -5,7 +5,6 @@ chrome.runtime.onMessage.addListener(
         $.post("http://127.0.0.1:5000/postmethod",
             {html: htmlCode}, 
             function(response) {
-                console.log(response.recipe);
                 document.body.outerHTML = response.recipe;
             }
         );

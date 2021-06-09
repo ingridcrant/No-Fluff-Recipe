@@ -8,9 +8,10 @@ def get_post_javascript_data():
     html = request.form['html']
     html_soup = BeautifulSoup(html, 'html.parser')
     
-    content = ""
+    content = '<div class="container">'
     for EachPart in html_soup.select('div[class*="wprm-recipe-container"]'):
         content += str(EachPart)
+    content += "</div>"
     
     response = jsonify(recipe=content)
     response.headers.add('Access-Control-Allow-Origin', '*')
