@@ -9,28 +9,21 @@ def get_post_javascript_data():
     html = request.form['html']
     html_soup = BeautifulSoup(html, 'html.parser')
     
+    recipetemplates = [html_soup.find('div', class_=re.compile('^wprm-recipe-container')),
+                    html_soup.find('div', id=re.compile('^wpurp-container-recipe-')),
+                    html_soup.find('div', id=re.compile('^tasty-recipes')),
+                    html_soup.find('div', id=re.compile('^post-recipe')),
+                    html_soup.find('div', id=re.compile('^structured-project-content')),
+                    html_soup.find('div', id="recipe"),
+                    html_soup.find('div', itemtype="http://schema.org/Recipe")]
+    
     content = '<div class="container">'
-    for EachPart in html_soup.select('div[class*="wprm-recipe-container"]'):
-        content += str(EachPart)
-    
-    if html_soup.find('div', id=re.compile('^wpurp-container-recipe-')):
-        content += str(html_soup.find('div', id=re.compile('^wpurp-container-recipe-')))
-    
-    if html_soup.find('div', id=re.compile('^tasty-recipes')):
-        content += str(html_soup.find('div', id=re.compile('^tasty-recipes')))
-    
-    if html_soup.find('div', id=re.compile('^post-recipe')):
-        content += str(html_soup.find('div', id=re.compile('^post-recipe')))
-    
-    if html_soup.find('div', id=re.compile('^structured-project-content')):
-        content += str(html_soup.find('div', id=re.compile('^structured-project-content')))
 
-    if html_soup.find('div', itemtype="http://schema.org/Recipe"):
-        content += str(html_soup.find('div', itemtype="http://schema.org/Recipe"))
-    
-    if html_soup.find('div', itemtype="https://schema.org/Recipe"):
-        content += str(html_soup.find('div', itemtype="https://schema.org/Recipe"))
-    
+    for recipetemplate in recipetemplates:
+        if recipetemplate:
+            content += str(recipetemplate)
+            break
+
     content += "</div>"
     
     response = jsonify(recipe=content)
