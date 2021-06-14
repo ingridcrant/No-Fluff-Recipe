@@ -22,7 +22,8 @@ def get_post_javascript_data():
                     html_soup.find('div', id=re.compile('^structured-project-content')),
                     html_soup.find('div', id="recipe"),
                     html_soup.find('div', itemtype="http://schema.org/Recipe"),
-                    html_soup.find('div', itemtype="https://schema.org/Recipe")]
+                    html_soup.find('div', itemtype="https://schema.org/Recipe"),
+                    html_soup.find('section', class_=re.compile('^mv-create-card'))]
     
     currenttags = "Not a compatible site"
 
