@@ -3,7 +3,7 @@ chrome.runtime.onMessage.addListener(
         if (message.clicked) {
             const htmlCode = document.documentElement.outerHTML;
 
-            $.post("http://127.0.0.1:5000/postmethod",
+            $.post("https://no-fluff-recipes-flask.herokuapp.com/postmethod",
                 {html: htmlCode}, 
                 function(response) {
                     document.body.outerHTML = response.recipe;
