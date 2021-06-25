@@ -6,7 +6,9 @@ chrome.runtime.onMessage.addListener(
             $.post("https://no-fluff-recipes-flask.herokuapp.com/postmethod",
                 {html: htmlCode}, 
                 function(response) {
-                    document.body.outerHTML = response.recipe;
+                    if (response.compatible) {
+                        document.body.outerHTML = response.recipe;
+                    }
                 }
             );
         }
