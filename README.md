@@ -1,3 +1,5 @@
+Link: https://chrome.google.com/webstore/detail/no-fluff-recipe/kjpknolonkdolcdobjpnpbhddcnfpbhh
+
 A chrome extension that only gives you the recipe without the fluff.
 
 The fruit in the icon turns red when you have navigated to a site where this extension is confirmed to work.
